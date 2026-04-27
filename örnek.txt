@@ -1,0 +1,14 @@
+merhaba, kendimi biraz depresif ve yalnız hissediyorum.
+
+derslerim kötü. ne yapacağımı bilemiyorum. eskiden arkadaşlarımla vakit geçirirdim ama artık dışarı çıkasım gelmiyor. ders çalışasım gelmiyor. hatta uyanasım bile gelmiyor.
+
+yaklaşık 1-2 haftadır bu şekilde.
+
+
+
+
+
+-------------
+peki şöyle yapabilir miyiz:
+uygulamaya girince cinsiyet seçtirsin, sonra yaş sorsun. sonra kalıp bilinmesi gereken temel sorular sorulsun. en son kayıt açılınca sohbet ekranına gelsin ve ekranda tanıtım yazısı karşılasın, nasıl kullanılacağı falan, rahat etsin kişi, uygulamayı çok güzel ön plana çıkaran yazı olsun.
+ve kişi claude gibi yeni conversation oluşturabilsin. ama konuşmalardan hafızasına bilgiler atabilsin istiyorum. kişinin takibini yapabilelim istiyorum. memory kısmı olsun yani. bu aşamada zor mu yoksa yapabilir miyiz?
