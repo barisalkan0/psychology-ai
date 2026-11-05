@@ -1,4 +1,20 @@
+# Gizli bilgiler
 .env
-requirements.txt
+.streamlit/secrets.toml
+
+# Kullanıcı verisi (sağlık verisi içerir — asla commit'leme)
+data/
+*.db
+*.db-journal
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Eski not dosyaları
 komut.txt
 örnek.txt
