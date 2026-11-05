@@ -1,5 +1,5 @@
 {
-  "name": "Psikorehber (Python 3.11)",
+  "name": "Psycalm (Python 3.11)",
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
   "customizations": {
     "codespaces": {
@@ -17,7 +17,7 @@
     "server": "streamlit run app.py"
   },
   "portsAttributes": {
-    "8501": { "label": "Psikorehber", "onAutoForward": "openPreview" }
+    "8501": { "label": "Psycalm", "onAutoForward": "openPreview" }
   },
   "forwardPorts": [8501]
 }

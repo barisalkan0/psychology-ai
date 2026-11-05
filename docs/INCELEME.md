@@ -12,7 +12,7 @@
 | “İstatistiği umut verici sun: X oranı Y, Z sürede iyileşme” | Modeli sayı uydurmaya itiyordu. | Katalog dışı sayısal istatistik yasak; kanıt gücü dürüstçe etiketleniyor. |
 | Kriz tespiti tamamen modele bağlıydı | Model kaçırabilir ya da güvenlik filtresi cevabı tamamen engelleyebilir. | Deterministik Türkçe tarama + modelden bağımsız kriz kartı + engellenme durumunda güvenli yedek metin. |
 | **API anahtarı git geçmişinde** (`main.py`, v1.0 commit'i; ayrıca yanlışlıkla `os.getenv`'e değişken adı olarak verilmiş) | Repo herkese açık; anahtar herkes tarafından görülebilir. | Kod `.env`'den okuyor. **Anahtarı mutlaka iptal et**; geçmişi temizlemek yetmez çünkü kopyalanmış olabilir. |
-| `sistem_prompt.txt` repodan silinmiş ama `app.py` onu okuyordu | Temiz bir kopyada uygulama açılışta çöküyordu. | Talimat kodda (`psikorehber/prompts.py`), sürüm kontrolünde ve test ediliyor. Gizli tutmak istiyorsan repoyu private yap. |
+| `sistem_prompt.txt` repodan silinmiş ama `app.py` onu okuyordu | Temiz bir kopyada uygulama açılışta çöküyordu. | Talimat kodda (`psycalm/prompts.py`), sürüm kontrolünde ve test ediliyor. Gizli tutmak istiyorsan repoyu private yap. |
 | Rıza, aydınlatma, yaş kontrolü yoktu | Sağlık verisi + yurt dışına aktarım + 18 yaş altı kullanım (Gemini şartları) sorunları. | Bkz. [HUKUKI_NOTLAR.md](HUKUKI_NOTLAR.md). |
 | Yapay zekâ olduğunu söyleme, istem enjeksiyonu, kapsam dışı istek, 18 altı için kural yoktu | — | Değişmez güvenlik çekirdeğine eklendi. |
 

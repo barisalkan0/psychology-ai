@@ -11,9 +11,9 @@ from __future__ import annotations
 
 import streamlit as st
 
-from psikorehber import profile
-from psikorehber.profile import QUESTIONS
-from psikorehber.safety import assess_onboarding
+from psycalm import profile
+from psycalm.profile import QUESTIONS
+from psycalm.safety import assess_onboarding
 
 from . import ui
 

@@ -1,5 +1,5 @@
-from psikorehber import modes, profile
-from psikorehber.prompts import build_system_prompt
+from psycalm import modes, profile
+from psycalm.prompts import build_system_prompt
 
 
 def _prompt(mode_key, consent=True, adult=True, memory=None, risk=""):

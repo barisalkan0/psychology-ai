@@ -28,9 +28,9 @@ class ConsentItem:
 
 DISCLAIMER = ConsentItem(
     "disclaimer", "2", True,
-    "Psikorehber'in bir terapist, doktor ya da acil servis olmadığını; teşhis koymadığını ve tedavi önermediğini "
+    "Psycalm'ın bir terapist, doktor ya da acil servis olmadığını; teşhis koymadığını ve tedavi önermediğini "
     "anladım. Verdiği bilgileri kendi değerlendirmemle kullanacağım.",
-    "Psikorehber bir yapay zekâ yönlendirme asistanıdır. Ne yaşadığını anlamana, güvenilir bilgiye ve doğru "
+    "Psycalm bir yapay zekâ yönlendirme asistanıdır. Ne yaşadığını anlamana, güvenilir bilgiye ve doğru "
     "uzmana ulaşmana yardım eder. Cevapları hatalı olabilir. Acil bir durumda 112'yi ara.",
 )
 

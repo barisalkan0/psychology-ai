@@ -1,4 +1,4 @@
-"""Psikorehber — giriş noktası.
+"""Psycalm — giriş noktası.
 
 Çalıştırmak için:  streamlit run app.py
 
@@ -18,7 +18,7 @@ from views.consent_page import required_consents_ok
 
 logging.basicConfig(level=logging.INFO)
 
-st.set_page_config(page_title="Psikorehber", page_icon=":material/spa:", layout="centered")
+st.set_page_config(page_title="Psycalm", page_icon=":material/spa:", layout="centered")
 ui.inject_css()
 
 HELP = st.Page(help_page.page, title="Yardım ve Kaynaklar", icon=":material/support:", url_path="yardim")

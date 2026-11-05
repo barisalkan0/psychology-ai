@@ -1,6 +1,6 @@
 import pytest
 
-from psikorehber.storage import Storage, StorageError
+from psycalm.storage import Storage, StorageError
 
 
 @pytest.fixture()

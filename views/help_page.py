@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import streamlit as st
 
-from psikorehber.citations import render
-from psikorehber.resources import (
+from psycalm.citations import render
+from psycalm.resources import (
     ABROAD_NOTE, EMERGENCY_ROOM_NOTE, EVIDENCE, HELPLINES, KADES_NOTE, SOURCES_BY_ID, SPECIALISTS,
     THERAPIST_TIPS, TOPIC_LABELS, VERIFIED_ON, sources_for_topics,
 )

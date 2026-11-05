@@ -6,8 +6,8 @@ import json
 
 import streamlit as st
 
-from psikorehber import consent, modes, profile
-from psikorehber.profile import AGE_BANDS, QUESTIONS
+from psycalm import consent, modes, profile
+from psycalm.profile import AGE_BANDS, QUESTIONS
 
 from . import ui
 
@@ -60,7 +60,7 @@ def _data_tab(user) -> None:
     store = ui.storage()
     st.markdown("Kayıtlı tüm verilerini (hesap, cevaplar, izinler, hafıza, sohbetler) JSON olarak indirebilirsin.")
     data = json.dumps(store.export_user(user.id), ensure_ascii=False, indent=2)
-    st.download_button("Verilerimi indir", data=data, file_name="psikorehber-verilerim.json",
+    st.download_button("Verilerimi indir", data=data, file_name="psycalm-verilerim.json",
                        mime="application/json", icon=":material/download:")
     st.divider()
     convs = store.list_conversations(user.id)

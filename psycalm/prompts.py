@@ -20,7 +20,7 @@ from __future__ import annotations
 from .modes import Mode
 from .resources import EVIDENCE, catalog_for_prompt
 
-IDENTITY = """Sen "Psikorehber"sin: Türkçe konuşan bir yapay zekâ yönlendirme asistanı.
+IDENTITY = """Sen "Psycalm"sın: Türkçe konuşan bir yapay zekâ yönlendirme asistanı.
 Görevin psikolojik tedavi vermek DEĞİL; kullanıcının ne yaşadığını anlamasına yardım etmek, ona güvenilir
 bilgi ve kaynak göstermek ve gerektiğinde DOĞRU uzmana ya da hizmete yönlendirmektir. Söylediklerinin
 neye dayandığını her zaman sade bir dille belirtirsin. Kullanıcıyı kendi kararlarını verebilen bir yetişkin
@@ -131,7 +131,7 @@ def build_system_prompt(
     return "\n\n".join(sections)
 
 
-MEMORY_EXTRACTION_PROMPT = """Aşağıda bir kullanıcı ile Psikorehber arasındaki sohbet var. Bir sonraki sohbette kullanıcıya
+MEMORY_EXTRACTION_PROMPT = """Aşağıda bir kullanıcı ile Psycalm arasındaki sohbet var. Bir sonraki sohbette kullanıcıya
 daha iyi destek olmak için hatırlanması YARARLI olan en fazla 5 kısa not çıkar.
 
 Kurallar:

@@ -1,7 +1,7 @@
 import pytest
 
-from psikorehber.safety import assess, assess_onboarding, prompt_note
-from psikorehber.text import fold, tr_lower
+from psycalm.safety import assess, assess_onboarding, prompt_note
+from psycalm.text import fold, tr_lower
 
 
 def test_turkish_lowercase_is_correct():

@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 @pytest.fixture()
 def app(tmp_path, monkeypatch):
-    monkeypatch.setenv("PSIKOREHBER_MOCK", "1")
-    monkeypatch.setenv("PSIKOREHBER_DB", str(tmp_path / "app.db"))
+    monkeypatch.setenv("PSYCALM_MOCK", "1")
+    monkeypatch.setenv("PSYCALM_DB", str(tmp_path / "app.db"))
     monkeypatch.chdir(ROOT)
     # cache_resource önbelleğini temizle: her test kendi veritabanını kullansın
     import streamlit as st
@@ -33,7 +33,7 @@ def _storage():
 
 
 def _ready_user(store, *, risk="hayir", memory=True):
-    from psikorehber import consent
+    from psycalm import consent
 
     u = store.register("deniz", "guclu-sifre", "18-24")
     store.record_consent(u.id, "disclaimer", consent.DISCLAIMER.version, True)
@@ -47,7 +47,7 @@ def _ready_user(store, *, risk="hayir", memory=True):
 def test_logged_out_sees_login_and_no_exception(app):
     app.run()
     assert not app.exception
-    assert app.title[0].value == "Psikorehber"
+    assert app.title[0].value == "Psycalm"
 
 
 def test_gates_follow_state(app):
@@ -60,7 +60,7 @@ def test_gates_follow_state(app):
     # Zorunlu kutular işaretlenmeden buton pasif
     confirm = next(b for b in app.button if b.label == "Onayla ve devam et")
     assert confirm.disabled
-    from psikorehber import consent
+    from psycalm import consent
 
     store.record_consent(u.id, "disclaimer", consent.DISCLAIMER.version, True)
     store.record_consent(u.id, "processing", consent.PROCESSING.version, True)
@@ -101,7 +101,7 @@ def test_crisis_message_is_flagged_and_card_shown(app):
 
 
 def test_llm_error_keeps_message_and_offers_retry(app, monkeypatch):
-    from psikorehber.llm import LLMError, MockLLM
+    from psycalm.llm import LLMError, MockLLM
 
     calls = {"n": 0}
 

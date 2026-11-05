@@ -11,12 +11,12 @@ from __future__ import annotations
 
 import streamlit as st
 
-from psikorehber import consent, modes, profile
-from psikorehber.llm import ChatTurn, LLMError
-from psikorehber.prompts import build_system_prompt
-from psikorehber.safety import Assessment, assess, assess_onboarding, prompt_note
-from psikorehber.storage import User
-from psikorehber.text import truncate
+from psycalm import consent, modes, profile
+from psycalm.llm import ChatTurn, LLMError
+from psycalm.prompts import build_system_prompt
+from psycalm.safety import Assessment, assess, assess_onboarding, prompt_note
+from psycalm.storage import User
+from psycalm.text import truncate
 
 from . import ui
 
@@ -72,7 +72,7 @@ def _maybe_extract_memory(user: User, conv_id: int | None) -> None:
     if sum(1 for m in msgs if m["role"] == "user") < 2:
         return
     transcript = "\n".join(
-        f"{'Kullanıcı' if m['role'] == 'user' else 'Psikorehber'}: {m['content']}" for m in msgs[-30:]
+        f"{'Kullanıcı' if m['role'] == 'user' else 'Psycalm'}: {m['content']}" for m in msgs[-30:]
     )
     try:
         with st.spinner("Önceki sohbetten hafıza notları çıkarılıyor…"):

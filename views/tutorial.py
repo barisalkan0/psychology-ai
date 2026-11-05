@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import streamlit as st
 
-from psikorehber.citations import render
-from psikorehber.modes import MODES
+from psycalm.citations import render
+from psycalm.modes import MODES
 
 from . import ui
 
@@ -25,7 +25,7 @@ SAMPLE_REPLY = (
 
 def _step_what() -> None:
     st.markdown(
-        "Psikorehber bir **yönlendirme asistanı**. Üç şeyde iyi olmaya çalışır:\n\n"
+        "Psycalm bir **yönlendirme asistanı**. Üç şeyde iyi olmaya çalışır:\n\n"
         "1. **Anlamak:** Ne yaşadığını toparlamana ve adını koymana yardım eder.\n"
         "2. **Güvenilir bilgi:** Önerilerinin neye dayandığını söyler, doğrulanmış kaynak gösterir.\n"
         "3. **Doğru yönlendirme:** Gerektiğinde kime, nereye ve nasıl başvuracağını somut olarak anlatır."
@@ -82,7 +82,7 @@ def _step_tools() -> None:
 
 
 STEPS = (
-    ("Psikorehber nedir?", _step_what),
+    ("Psycalm nedir?", _step_what),
     ("Ne değildir?", _step_not),
     ("Nasıl kullanılır?", _step_how),
     ("Modlar", _step_modes),

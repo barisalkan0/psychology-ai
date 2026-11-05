@@ -1,7 +1,7 @@
 import re
 
-from psikorehber import citations
-from psikorehber.resources import EVIDENCE, HELPLINES, SOURCES, SOURCES_BY_ID, SPECIALISTS, THERAPIST_TIPS
+from psycalm import citations
+from psycalm.resources import EVIDENCE, HELPLINES, SOURCES, SOURCES_BY_ID, SPECIALISTS, THERAPIST_TIPS
 
 
 def test_known_markers_become_numbers_and_footer():

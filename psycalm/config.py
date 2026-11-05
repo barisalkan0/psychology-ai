@@ -63,13 +63,13 @@ class Settings:
 
 def load_settings() -> Settings:
     api_key = _secret("GEMINI_API_KEY") or _secret("API_KEY")  # API_KEY: eski sürümle uyum
-    db = _secret("PSIKOREHBER_DB") or str(ROOT / "data" / "psikorehber.db")
+    db = _secret("PSYCALM_DB") or str(ROOT / "data" / "psycalm.db")
     return Settings(
         api_key=api_key,
         model=_secret("GEMINI_MODEL") or DEFAULT_MODEL,
         db_path=Path(db),
         paid_tier=_flag("GEMINI_PAID_TIER"),
-        mock=_flag("PSIKOREHBER_MOCK"),
-        controller_name=_secret("VERI_SORUMLUSU") or "Psikorehber geliştiricisi",
+        mock=_flag("PSYCALM_MOCK"),
+        controller_name=_secret("VERI_SORUMLUSU") or "Psycalm geliştiricisi",
         controller_contact=_secret("VERI_SORUMLUSU_ILETISIM") or "(iletişim adresi eklenmedi)",
     )

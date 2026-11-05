@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 from google.genai import errors
 
-from psikorehber.llm import BLOCKED_FALLBACK, ChatTurn, GeminiLLM, LLMError, _parse_json_list, _to_contents
+from psycalm.llm import BLOCKED_FALLBACK, ChatTurn, GeminiLLM, LLMError, _parse_json_list, _to_contents
 
 
 def _chunk(text="", finish=None, block=None):

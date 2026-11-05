@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from psikorehber import consent
+from psycalm import consent
 
 from . import ui
 

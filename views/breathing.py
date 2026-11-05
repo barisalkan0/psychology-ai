@@ -14,8 +14,8 @@ from pathlib import Path
 import streamlit as st
 import streamlit.components.v1 as components
 
-from psikorehber.citations import render
-from psikorehber.resources import EVIDENCE
+from psycalm.citations import render
+from psycalm.resources import EVIDENCE
 
 TEMPLATE = (Path(__file__).resolve().parent.parent / "assets" / "breathing.html").read_text(encoding="utf-8")
 

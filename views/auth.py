@@ -6,8 +6,8 @@ import time
 
 import streamlit as st
 
-from psikorehber.profile import AGE_BANDS
-from psikorehber.storage import MIN_PASSWORD, StorageError
+from psycalm.profile import AGE_BANDS
+from psycalm.storage import MIN_PASSWORD, StorageError
 
 from . import ui
 
@@ -17,7 +17,7 @@ LOCK_SECONDS = 30
 
 def _youth_message() -> None:
     st.warning(
-        "**Psikorehber şu an yalnızca 18 yaş ve üzeri için.** Bunun iki nedeni var: reşit olmayanların sağlık "
+        "**Psycalm şu an yalnızca 18 yaş ve üzeri için.** Bunun iki nedeni var: reşit olmayanların sağlık "
         "verileri için veli onayı gerekiyor ve kullandığımız yapay zekâ hizmetinin şartları 18 yaş altını "
         "kapsamıyor.",
         icon=":material/info:",
@@ -103,13 +103,13 @@ def _register_tab() -> None:
 
 
 def page() -> None:
-    st.title("Psikorehber")
+    st.title("Psycalm")
     st.markdown(
         "Ne yaşadığını anlamana, **güvenilir bilgiye** ve **doğru uzmana** ulaşmana yardım eden bir yapay zekâ "
         "yönlendirme asistanı. Söylediklerinin neye dayandığını her zaman gösterir."
     )
     st.caption(
-        "Psikorehber bir terapist, doktor ya da acil servis değildir. Acil bir durumdaysan **[112](tel:112)**'yi ara."
+        "Psycalm bir terapist, doktor ya da acil servis değildir. Acil bir durumdaysan **[112](tel:112)**'yi ara."
     )
     ui.demo_banner()
     login, register = st.tabs(["Giriş yap", "Hesap oluştur"])

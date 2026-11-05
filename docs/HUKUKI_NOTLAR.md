@@ -29,14 +29,14 @@ Kaynak: Gemini API Additional Terms of Service (arama sonuçlarına göre Mart 2
   bir uygulama için ücretsiz kota uygun değil.** Gerçek kullanıcıya açmadan önce ücretli kotaya geç ve
   `GEMINI_PAID_TIER=true` yap. O zamana kadar rıza ekranında açık bir uyarı gösteriliyor.
 - **Tıbbi kullanım:** Şartlar, hizmetin klinik uygulamada, tıbbi tavsiye vermek için ya da tıbbi cihaz onayı gerektiren
-  bir şekilde kullanılmasını yasaklıyor. → Psikorehber tanı koymuyor, ilaç/tedavi önermiyor, skor hesaplamıyor; bu
+  bir şekilde kullanılmasını yasaklıyor. → Psycalm tanı koymuyor, ilaç/tedavi önermiyor, skor hesaplamıyor; bu
   kurallar sistem talimatının değişmez çekirdeğinde. ⚠️ Yine de “psikolojik yönlendirme” ile “tıbbi tavsiye” arasındaki
   sınır gri; bir avukat yorumu almak doğru olur.
 
 ## 3. Tıbbi cihaz sınırı
 
 ⚠️ Emin değilim. Teşhis, tedavi, izleme ya da tahmin amacı taşıyan yazılımlar Tıbbi Cihaz Yönetmeliği (AB MDR uyumlu)
-kapsamına girebiliyor. Psikorehber bu yüzden bilinçli olarak:
+kapsamına girebiliyor. Psycalm bu yüzden bilinçli olarak:
 - tanı koymuyor ya da “depresyon skoru” gibi bir puan hesaplamıyor,
 - PHQ-9/GAD-7 gibi tarama ölçeklerini içermiyor,
 - tedavi önermek yerine genel bilgi ve doğru uzmana yönlendirme yapıyor.
@@ -70,7 +70,7 @@ talimatta zorunlu.
 - [ ] Diskte şifreleme, yedekleme ve log politikası, HTTPS arkasında yayın
 - [ ] Bir klinik psikolog veya psikiyatristin sistem talimatını, yönlendirme mantığını ve kaynak listesini incelemesi
 - [ ] Kriz akışının gerçek senaryolarla test edilmesi (red-team): dolaylı ifadeler, enjeksiyon, ilaç soruları, 18 altı
-- [ ] Yardım hattı numaralarının resmi kaynaklardan yeniden doğrulanması (`psikorehber/resources.py`, `VERIFIED_ON`)
+- [ ] Yardım hattı numaralarının resmi kaynaklardan yeniden doğrulanması (`psycalm/resources.py`, `VERIFIED_ON`)
 
 ## Kaynaklar
 

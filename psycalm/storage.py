@@ -145,7 +145,7 @@ class Storage:
         if len(password) < MIN_PASSWORD:
             raise StorageError(f"Şifre en az {MIN_PASSWORD} karakter olmalı.")
         if age_band == "<18":
-            raise StorageError("Psikorehber 18 yaş ve üzeri içindir.")
+            raise StorageError("Psycalm 18 yaş ve üzeri içindir.")
         salt = os.urandom(16)
         try:
             with self._conn() as c:

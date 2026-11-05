@@ -1,9 +1,9 @@
-# Psikorehber
+# Psycalm
 
 Ne yaşadığını anlamana, **güvenilir bilgiye** ve **doğru uzmana** ulaşmana yardım eden, Türkçe bir yapay zekâ
 yönlendirme asistanı. Psikolojik tedavi vermez; söylediklerinin **neye dayandığını** her zaman gösterir.
 
-> ⚠️ Psikorehber bir terapist, doktor ya da acil servis değildir. Gerçek kullanıcılara açmadan önce
+> ⚠️ Psycalm bir terapist, doktor ya da acil servis değildir. Gerçek kullanıcılara açmadan önce
 > [docs/HUKUKI_NOTLAR.md](docs/HUKUKI_NOTLAR.md) içindeki kontrol listesini tamamla.
 
 ## Neler var?
@@ -55,7 +55,7 @@ pip install -r requirements-dev.txt && pytest -q
 
 ```
 app.py                 Giriş noktası; duruma göre sayfa kapıları (giriş → izin → tanışma → tanıtım → uygulama)
-psikorehber/
+psycalm/
   safety.py            Deterministik Türkçe risk taraması (İ/ı doğru küçültme + ASCII katlama)
   resources.py         Doğrulanmış kaynak kataloğu, yardım hatları, “kime başvurmalı” rehberi
   citations.py         [kaynak:id] → ¹ ² + kaynak listesi; bilinmeyen kimlikleri atar, akışta yarım işareti gizler

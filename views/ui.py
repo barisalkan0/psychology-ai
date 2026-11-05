@@ -6,12 +6,12 @@ import itertools
 
 import streamlit as st
 
-from psikorehber import citations
-from psikorehber.config import Settings, load_settings
-from psikorehber.llm import LLM, make_llm
-from psikorehber.resources import ABROAD_NOTE, EMERGENCY_ROOM_NOTE, HELPLINES, KADES_NOTE
-from psikorehber.safety import Assessment
-from psikorehber.storage import Storage, User
+from psycalm import citations
+from psycalm.config import Settings, load_settings
+from psycalm.llm import LLM, make_llm
+from psycalm.resources import ABROAD_NOTE, EMERGENCY_ROOM_NOTE, HELPLINES, KADES_NOTE
+from psycalm.safety import Assessment
+from psycalm.storage import Storage, User
 
 _counter = itertools.count()
 
@@ -152,7 +152,7 @@ def crisis_card(a: Assessment, *, compact: bool = False, from_onboarding: bool =
 def sidebar_footer(user: User | None) -> None:
     with st.sidebar:
         st.space("small")
-        st.caption("Acil durumda **[112](tel:112)** · Psikorehber bir terapist ya da acil servis değildir.")
+        st.caption("Acil durumda **[112](tel:112)** · Psycalm bir terapist ya da acil servis değildir.")
         if user is not None:
             if st.button("Çıkış yap", icon=":material/logout:", type="tertiary", key="logout_btn"):
                 logout()
