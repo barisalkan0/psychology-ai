@@ -1,0 +1,71 @@
+[server]
+# Fontlar ./static klasöründen sunuluyor (Google Fonts'a istek yok → kullanıcı IP'si üçüncü tarafa gitmez)
+enableStaticServing = true
+maxUploadSize = 1
+
+[browser]
+# Gizlilik: Streamlit'in kullanım istatistiği toplamasını kapat
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+# Kullanıcıya traceback gösterme; ayrıntılar sunucu loguna düşer
+showErrorDetails = "type"
+
+[runner]
+magicEnabled = false
+
+[[theme.fontFaces]]
+family = "Nunito Sans"
+url = "app/static/fonts/NunitoSans-Variable.woff2"
+weight = "300 800"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Nunito Sans"
+url = "app/static/fonts/NunitoSans-Italic-Variable.woff2"
+weight = "300 800"
+style = "italic"
+
+[[theme.fontFaces]]
+family = "Lora"
+url = "app/static/fonts/Lora-Variable.woff2"
+weight = "400 700"
+style = "normal"
+
+[theme]
+font = "Nunito Sans, system-ui, -apple-system, Segoe UI, sans-serif"
+headingFont = "Lora, Georgia, serif"
+headingFontWeights = [600, 600, 600, 600, 600, 600]
+baseRadius = "0.75rem"
+buttonRadius = "full"
+showWidgetBorder = true
+linkUnderline = true
+
+[theme.light]
+primaryColor = "#2F6F6A"
+backgroundColor = "#FAF8F4"
+secondaryBackgroundColor = "#EFEBE3"
+textColor = "#1F2A2A"
+borderColor = "#DDD7CB"
+linkColor = "#23605B"
+redColor = "#B42318"
+greenColor = "#2F7D4F"
+
+[theme.light.sidebar]
+backgroundColor = "#F2EEE7"
+secondaryBackgroundColor = "#E8E3D9"
+
+[theme.dark]
+primaryColor = "#7FC8BD"
+backgroundColor = "#121816"
+secondaryBackgroundColor = "#1B2421"
+textColor = "#E6ECEA"
+borderColor = "#2C3934"
+linkColor = "#8FD3C8"
+redColor = "#FF8A7A"
+greenColor = "#7CCB98"
+
+[theme.dark.sidebar]
+backgroundColor = "#161E1B"
+secondaryBackgroundColor = "#1F2A26"

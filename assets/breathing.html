@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: __BG__; --fg: __FG__; --muted: __MUTED__; --accent: __ACCENT__; --accent-soft: __ACCENT_SOFT__;
+    --ring: __RING__; --btn-fg: __BTN_FG__;
+  }
+  @font-face { font-family: "Nunito Sans"; src: url("app/static/fonts/NunitoSans-Variable.woff2") format("woff2");
+    font-weight: 300 800; font-display: swap; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg);
+    font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 8px 12px 4px; }
+  .stage { position: relative; width: 280px; height: 280px; display: grid; place-items: center; }
+  .guide { position: absolute; inset: 0; border-radius: 50%; border: 2px dashed var(--ring); opacity: .55; }
+  .orb { width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--accent-soft), var(--accent));
+    transform: scale(.42); will-change: transform; box-shadow: 0 10px 40px -12px var(--accent); }
+  .count { position: absolute; pointer-events: none; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+    font-size: 2.4rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+  .phase { font-size: 1.6rem; font-weight: 800; letter-spacing: .01em; min-height: 1.3em; }
+  .hint { min-height: 1.4em; color: var(--muted); font-size: .98rem; text-align: center; }
+  .bar { width: min(340px, 90%); height: 6px; border-radius: 6px; background: var(--ring); overflow: hidden; }
+  .bar > div { height: 100%; width: 0%; background: var(--accent); }
+  .meta { color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .row { display: flex; gap: 10px; }
+  button { min-height: 44px; min-width: 120px; padding: 0 20px; border-radius: 999px; font: inherit; font-weight: 700;
+    cursor: pointer; border: 1.5px solid var(--accent); background: transparent; color: var(--fg); }
+  button.primary { background: var(--accent); color: var(--btn-fg); }
+  button:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+  /* Dar ekran (telefon): daire küçülür, butonlar her zaman görünür kalır */
+  @media (max-width: 480px) {
+    .stage, .orb { width: 210px; height: 210px; }
+    .count { font-size: 2rem; }
+    .phase { font-size: 1.4rem; }
+    .hint { font-size: .92rem; min-height: 2.6em; }
+    button { min-width: 108px; }
+  }
+  /* Hareket azaltma: büyüyen daire yerine yalnızca renk yoğunluğu ve ilerleme çubuğu */
+  @media (prefers-reduced-motion: reduce) { .orb { transform: scale(.8) !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stage" aria-hidden="true">
+    <div class="guide"></div>
+    <div class="orb" id="orb"></div>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="phase" id="phase">Hazır</div>
+  <div class="hint" id="hint" aria-live="polite">Başlat'a bas ve yönergeyi izle.</div>
+  <div class="bar" aria-hidden="true"><div id="bar"></div></div>
+  <div class="meta" id="meta"></div>
+  <div class="row">
+    <button class="primary" id="toggle" type="button">Başlat</button>
+    <button id="reset" type="button">Sıfırla</button>
+  </div>
+</div>
+<script>
+(() => {
+  const CFG = __CONFIG__;            // { phases: [{name, hint, seconds, scale}], totalSeconds }
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = (id) => document.getElementById(id);
+  const orb = $("orb"), phaseEl = $("phase"), countEl = $("count"), hint = $("hint"),
+        bar = $("bar"), meta = $("meta"), toggle = $("toggle"), reset = $("reset");
+  const cycle = CFG.phases.reduce((s, p) => s + p.seconds, 0);
+  // Süre dolduğunda nefesin ortasında kesmemek için tamamlanan tam döngü sayısına yuvarla
+  const cycles = Math.max(1, Math.round(CFG.totalSeconds / cycle));
+  const total = cycles * cycle;
+  const MIN_SCALE = 0.42;
+
+  let running = false, startedAt = 0, elapsedBefore = 0, raf = 0, lastPhase = -1;
+
+  const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+  const ease = (t) => 0.5 - Math.cos(Math.PI * t) / 2;   // nefes gibi yumuşak hızlanıp yavaşlama
+
+  function locate(t) {
+    const inCycle = t % cycle;
+    let acc = 0;
+    for (let i = 0; i < CFG.phases.length; i++) {
+      const p = CFG.phases[i];
+      if (inCycle < acc + p.seconds) return { i, p, local: (inCycle - acc) / p.seconds, left: acc + p.seconds - inCycle };
+      acc += p.seconds;
+    }
+    const i = CFG.phases.length - 1;
+    return { i, p: CFG.phases[i], local: 1, left: 0 };
+  }
+
+  function scaleAt(i, local) {
+    const p = CFG.phases[i];
+    const prev = CFG.phases[(i - 1 + CFG.phases.length) % CFG.phases.length];
+    const from = prev.scale, to = p.scale;
+    return from + (to - from) * ease(local);
+  }
+
+  function paint(t) {
+    if (t >= total) { finish(); return; }
+    const { i, p, local, left } = locate(t);
+    const s = scaleAt(i, local);
+    if (!reduce) orb.style.transform = `scale(${s})`;
+    else orb.style.opacity = String(0.55 + 0.45 * (s - MIN_SCALE) / (1 - MIN_SCALE));
+    countEl.textContent = String(Math.ceil(left));
+    if (i !== lastPhase) {               // yazı yalnızca evre değişince güncellenir (ekran okuyucu için)
+      phaseEl.textContent = p.name;
+      hint.textContent = p.hint;
+      lastPhase = i;
+    }
+    bar.style.width = `${(100 * t / total).toFixed(2)}%`;
+    meta.textContent = `${fmt(t)} / ${fmt(total)} · döngü ${Math.min(cycles, Math.floor(t / cycle) + 1)}/${cycles}`;
+  }
+
+  function now() { return elapsedBefore + (running ? (performance.now() - startedAt) / 1000 : 0); }
+  function loop() { paint(now()); if (running) raf = requestAnimationFrame(loop); }
+
+  function start() {
+    running = true; startedAt = performance.now(); toggle.textContent = "Duraklat"; loop();
+  }
+  function pause(reason) {
+    if (!running) return;
+    elapsedBefore = now(); running = false; cancelAnimationFrame(raf);
+    toggle.textContent = "Devam et";
+    hint.textContent = reason || "Duraklatıldı.";
+  }
+  function finish() {
+    running = false; cancelAnimationFrame(raf); elapsedBefore = 0; lastPhase = -1;
+    orb.style.transform = `scale(${MIN_SCALE})`; orb.style.opacity = "";
+    phaseEl.textContent = "Bitti"; countEl.textContent = "";
+    hint.textContent = "Bir an normal nefesine dön ve bedeninin nasıl hissettiğine dikkat et.";
+    bar.style.width = "100%"; toggle.textContent = "Yeniden başlat";
+  }
+  function resetAll() {
+    running = false; cancelAnimationFrame(raf); elapsedBefore = 0; lastPhase = -1;
+    orb.style.transform = `scale(${MIN_SCALE})`; orb.style.opacity = "";
+    phaseEl.textContent = "Hazır"; countEl.textContent = ""; bar.style.width = "0%";
+    hint.textContent = "Başlat'a bas ve yönergeyi izle."; toggle.textContent = "Başlat";
+    meta.textContent = `Toplam ${fmt(total)} · ${cycles} döngü`;
+  }
+
+  toggle.addEventListener("click", () => {
+    if (running) pause();
+    else { if (toggle.textContent === "Yeniden başlat") resetAll(); start(); }
+  });
+  reset.addEventListener("click", resetAll);
+  // Sekme arka plana geçerse otomatik duraklat: tarayıcı animasyonu dondurur, zaman kaymasın
+  document.addEventListener("visibilitychange", () => { if (document.hidden) pause("Sekmeden ayrıldığın için duraklatıldı."); });
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space" && document.activeElement?.tagName !== "BUTTON") { e.preventDefault(); toggle.click(); }
+  });
+  resetAll();
+})();
+</script>
+</body>
+</html>
