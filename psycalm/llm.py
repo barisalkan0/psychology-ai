@@ -103,9 +103,10 @@ class GeminiLLM:
                 threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
             ),
         ]
+        # temperature bilerek gönderilmiyor: Gemini 3.6 Flash ve sonrası temperature/top_p/top_k'yı kaldırdı
+        # (yok sayıyor ya da 400 dönüyor) ve varsayılan model "latest" takma adı bu modellere gidiyor.
         return types.GenerateContentConfig(
             system_instruction=system_prompt,
-            temperature=temperature,
             # Yeni Gemini modellerinde "düşünme" token'ları da bu sınıra sayılabiliyor; düşük tutulursa cevap kesilir
             max_output_tokens=8192,
             safety_settings=safety,
